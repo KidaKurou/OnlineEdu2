@@ -170,6 +170,35 @@
     transition: opacity 0.3s ease;
 }
 
+form#delete-course-form {
+    height: 0px;
+}
+
+.delete-btn {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+    left: 160px;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+    background-color: #ff7676;
+    background-image: url(../images/trash.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px;
+    opacity: 0.5;
+}
+
+.delete-btn:hover {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
 .form-container {
     display: none;
     width: 100%;

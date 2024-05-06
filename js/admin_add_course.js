@@ -64,7 +64,12 @@ $(document).ready(function () {
                 $('<h2></h2>').text('Add Courses').appendTo('.admin-header-panel');
                 $.each(response.courses, function (i, course) {
                     var courseBlock = $('<div class="course-block"></div>');
-                    $('<img src="../processes/image.php?id=' + course.CourseID + '" alt="' + course.Title + '">').appendTo(courseBlock);
+                    var img = $('<img alt="' + course.Title + '">').appendTo(courseBlock);
+                    // Load the image asynchronously
+                    $.get('../processes/image.php?id=' + course.CourseID, function (data) {
+                        img.attr('src', data);
+                    });
+                    // $('<img src="../processes/image.php?id=' + course.CourseID + '" alt="' + course.Title + '">').appendTo(courseBlock);
                     $('<h3></h3>').text(course.Title).appendTo(courseBlock);
                     $('<p></p>').text(course.Description).appendTo(courseBlock);
                     $('<p></p>').text('Level: ' + course.Level).appendTo(courseBlock);

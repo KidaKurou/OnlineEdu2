@@ -10,6 +10,6 @@
     $stmt->execute();
     $stmt->bind_result($picture);
     $stmt->fetch();
-    header('Content-Type: ../image/jpeg');
-    echo $picture;
+    // header('Content-Type: ../image/jpeg');
+    echo 'data:image/jpeg;base64,' . base64_encode($picture);
 ?>
