@@ -151,6 +151,14 @@
     min-height: 400px;
 }
 
+.form-container_1 {
+    display: block;
+}
+
+.form-container_2 {
+    display: none;
+}
+
 .active {
     display: block;
 }

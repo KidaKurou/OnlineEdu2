@@ -26,7 +26,10 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#edit-course-btn', function () {
-        $('.form-container').toggleClass('active');
+        var form_container_1 = $(this).closest('.form-container_1');
+        var form_container_2 = $(this).closest('.form-container_2');
+        $(form_container_1).toggleClass('active');
+        $(form_container_2).toggleClass('active');
     });
 
     $(document).on('submit', '#add-course-form', function (e) {
@@ -130,17 +133,17 @@ $(document).ready(function () {
                 $('<h2></h2>').text('Edit Courses').appendTo('.admin-header');
                 $.each(response.courses, function (i, course) {
                     var courseBlock = $('<div class="course-block"></div>');
-                    var form_container_1 = $('<div class="form-container active"></div>').appendTo(courseBlock);
+                    var form_container_1 = $('<div class="form-container_1 active"></div>').appendTo(courseBlock);
                     $('<img src="../processes/image.php?id=' + course.CourseID + '" alt="' + course.Title + '">').appendTo(form_container_1);
                     $('<h3></h3>').text(course.Title).appendTo(form_container_1);
                     $('<p></p>').text(course.Description).appendTo(form_container_1);
                     $('<p></p>').text('Level: ' + course.Level).appendTo(form_container_1);
                     $('<p></p>').text('Duration: ' + course.Duration + ' hours').appendTo(form_container_1);
                     $('<p></p>').text('Visible: ' + Boolean(course.Hide)).appendTo(form_container_1);
-                    // $('<a id="edit-course-btn" class="btn">Edit</a>').appendTo(form_container_1);
-                    $('<button id="edit-course-btn">Edit</button>').appendTo(form_container_1);
+                    $('<a id="edit-course-btn" class="btn">Edit</a>').appendTo(form_container_1);
+                    // $('<button id="edit-course-btn">Edit</button>').appendTo(form_container_1);
 
-                    var form_container_2 = $('<div class="form-container"></div>').appendTo(courseBlock);
+                    var form_container_2 = $('<div class="form-container_2"></div>').appendTo(courseBlock);
                     var form = $('<form id="add-course-form"></form>');
                     $('<label for="title">Title:</label>').appendTo(form);
                     $('<input type="text" id="title" name="title" value="' + course.Title + '" required>').appendTo(form);
