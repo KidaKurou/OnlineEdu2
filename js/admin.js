@@ -26,11 +26,11 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#edit-course-btn', function () {
-        var form_container_1 = $(this).closest('.form-container_1');
-        var form_container_2 = $(this).closest('.form-container_2');
-        $(form_container_1).toggleClass('active');
-        $(form_container_2).toggleClass('active');
-    });
+        let form_container_1 = $(this).parent();
+        let form_container_2 = form_container_1.next();
+        form_container_2.toggleClass('active');
+        form_container_1.toggleClass('active');
+    })
 
     $(document).on('submit', '#add-course-form', function (e) {
         e.preventDefault();
@@ -143,7 +143,10 @@ $(document).ready(function () {
                     $('<a id="edit-course-btn" class="btn">Edit</a>').appendTo(form_container_1);
                     // $('<button id="edit-course-btn">Edit</button>').appendTo(form_container_1);
 
-                    var form_container_2 = $('<div class="form-container_2"></div>').appendTo(courseBlock);
+                    var form_container_2 = $('<div class="form_container_2"></div>').appendTo(courseBlock);
+                    $('<a class="cancel-btn"></a>').appendTo(form_container_2);
+                    $('<h3 class="form-title">Edit Course</h3>').appendTo(form_container_2);
+                    // Create the form
                     var form = $('<form id="add-course-form"></form>');
                     $('<label for="title">Title:</label>').appendTo(form);
                     $('<input type="text" id="title" name="title" value="' + course.Title + '" required>').appendTo(form);
@@ -158,7 +161,7 @@ $(document).ready(function () {
                     $('<label for="duration">Duration:</label>').appendTo(form);
                     $('<input type="number" id="duration" name="duration" value="' + course.Duration + '" required>').appendTo(form);
                     $('<label for="course-img">Choose an image:</label>').appendTo(form);
-                    $('<input type="file" id="course-img" name="course-img" accept="image/*" required>').appendTo(form);
+                    $('<input type="file" id="course-img" name="course-img" accept="image/*">').appendTo(form);
                     $('<label for="visible">Visible:</label>').appendTo(form);
                     $('<input type="checkbox" id="visible" name="visible" value="1" ' + (course.Hide ? 'checked' : '') + '>').appendTo(form);
                     $('<input type="submit" value="Edit Course">').appendTo(form);

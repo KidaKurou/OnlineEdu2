@@ -130,7 +130,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #97222277;
     align-items: flex-start;
 }
 
@@ -144,6 +144,31 @@
     border-radius: 5px;
 }
 
+.cancel-btn {
+    display: block;
+    position: relative;
+    top: 10px;
+    left: 350px;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    background-image: url(../images/cross.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px;
+    opacity: 0.5;
+}
+
+.cancel-btn:hover {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
 .form-container {
     display: none;
     width: 100%;
@@ -152,11 +177,12 @@
 }
 
 .form-container_1 {
-    display: block;
+    display: none;
 }
 
-.form-container_2 {
+.form_container_2 {
     display: none;
+    background-color: #f5f5f5;
 }
 
 .active {
