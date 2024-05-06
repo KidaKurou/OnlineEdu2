@@ -3,9 +3,9 @@ $(document).ready(function () {
         var actualLink = $('.actual')[0].id;
         console.log(actualLink);
         if (actualLink === 'add-course-link') {
-            addCourse({ preventDefault: function () {} });
+            addCourse({ preventDefault: function () { } });
         } else if (actualLink === 'edit-course-link') {
-            editCourse({ preventDefault: function () {} });
+            editCourse({ preventDefault: function () { } });
         }
     });
 
@@ -23,7 +23,11 @@ $(document).ready(function () {
 
     $(document).on('click', '#add-course-btn', function () {
         $('.form-container').toggleClass('active');
-    })
+    });
+
+    $(document).on('click', '#edit-course-btn', function () {
+        $('.form-container').toggleClass('active');
+    });
 
     $(document).on('submit', '#add-course-form', function (e) {
         e.preventDefault();
@@ -111,7 +115,7 @@ $(document).ready(function () {
         });
     };
 
-    function editCourse(e){
+    function editCourse(e) {
         $("#add-course-link").toggleClass('actual');
         $("#edit-course-link").toggleClass('actual');
         e.preventDefault();
@@ -135,10 +139,32 @@ $(document).ready(function () {
                     $('<p></p>').text('Level: ' + course.Level).appendTo(form_container_1);
                     $('<p></p>').text('Duration: ' + course.Duration + ' hours').appendTo(form_container_1);
                     $('<p></p>').text('Visible: ' + Boolean(course.Hide)).appendTo(form_container_1);
-                    $('<a href="edit_course.php?id=' + course.CourseID + '" class="btn">Edit</a>').appendTo(form_container_1);
+                    $('<a id="edit-course-btn" class="btn">Edit</a>').appendTo(form_container_1);
+
+                    var form_container_2 = $('<div class="form-container"></div>').appendTo(courseBlock);
+                    var form = $('<form id="add-course-form"></form>');
+                    $('<label for="title">Title:</label>').appendTo(form);
+                    $('<input type="text" id="title" name="title" value="' + course.Title + '" required>').appendTo(form);
+                    $('<label for="level">Level:</label>').appendTo(form);
+                    var select = $('<select id="level" name="level" required></select>').appendTo(form);
+                    $('<option value="">Select a level</option>').appendTo(select);
+                    $.each(response.levels, function (i, level) {
+                        $('<option value="' + level.Title + '">' + level.Title + '</option>').appendTo(select);
+                    });
+                    $('<label for="description">Description:</label>').appendTo(form);
+                    $('<textarea id="description" name="description" required>' + course.Description + '</textarea>').appendTo(form);
+                    $('<label for="duration">Duration:</label>').appendTo(form);
+                    $('<input type="number" id="duration" name="duration" value="' + course.Duration + '" required>').appendTo(form);
+                    $('<label for="course-img">Choose an image:</label>').appendTo(form);
+                    $('<input type="file" id="course-img" name="course-img" accept="image/*" required>').appendTo(form);
+                    $('<label for="visible">Visible:</label>').appendTo(form);
+                    $('<input type="checkbox" id="visible" name="visible" value="1" ' + (course.Hide ? 'checked' : '') + '>').appendTo(form);
+                    $('<input type="submit" value="Edit Course">').appendTo(form);
+                    form.appendTo(form_container_2);
+
                     courseBlock.appendTo('.courses-container');
                 });
-                
+
             },
             error: function (xhr, status, error) {
                 alert("ERROR");
@@ -147,7 +173,7 @@ $(document).ready(function () {
         });
     }
 
-    function editCard(e){
+    function editCard(e) {
         e.preventDefault();
         $.ajax({
             url: "../processes/edit_card.php",
