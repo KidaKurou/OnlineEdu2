@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->send_long_data(1, $imageData);
     $stmt->execute();
 
-
     // Send a JSON response back to the client
     header('Content-Type: application/json');
     echo json_encode(['status' => 'success', 'message' => 'Course added successfully']);

@@ -75,6 +75,7 @@ $(document).ready(function () {
                     $('<div class="form-header"><h3 class="form-title">Edit Course</h3><a class="cancel-btn" id="cancel-btn-edit"></a></div>').appendTo(form_container_2);
                     // Create the form
                     var form = $('<form class="course-form" id="edit-course-form"></form>');
+                    $('<input type="hidden" name="course-id" value="' + course.CourseID + '">').appendTo(form);
                     $('<label for="title">Title:</label>').appendTo(form);
                     $('<input type="text" id="title" name="title" value="' + course.Title + '" required>').appendTo(form);
                     $('<label for="level">Level:</label>').appendTo(form);
@@ -103,5 +104,14 @@ $(document).ready(function () {
                 console.log(xhr.responseText);
             }
         });
+    }
+
+    function showAlert(message) {
+        var alertBox = $('<div></div>').addClass('alert-message').text(message);
+        $('body').append(alertBox);
+        alertBox.fadeIn();
+        setTimeout(function () {
+            alertBox.fadeOut();
+        }, 5000);
     }
 });

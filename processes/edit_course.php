@@ -15,6 +15,7 @@ function utf8ize($mixed) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Handle the form submission here
+    $course_id = $_POST['course-id'];
     $title = $_POST['title'];
     $level = $_POST['level'];
     $description = $_POST['description'];
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt === false) {
             die("Failed to prepare statement: " . $conn->error);
         }
-        $stmt->bind_param("sbssii", $title, $null, $level, $description, $duration, $visible, $_POST['course-id']);
+        $stmt->bind_param("sbssii", $title, $null, $level, $description, $duration, $visible, $course_id);
         $stmt->send_long_data(1, $imageData);
     }
     else {
@@ -42,14 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt === false) {
             die("Failed to prepare statement: " . $conn->error);
         }
-        $stmt->bind_param("sssii", $title, $level, $description, $duration, $visible, $_POST['course-id']);
+        $stmt->bind_param("sssii", $title, $level, $description, $duration, $visible, $course_id);
     }
     $stmt->execute();
 
     // Send a JSON response back to the client
     header('Content-Type: application/json');
-    echo json_encode(['status' => 'success', 'message' => 'Course modified successfully']);
-
+    echo json_encode(['status' => 'success', 'message' => 'Course edited successfully']);
 } else {
     // Fetch the existing courses
     $sql = "SELECT * FROM Courses";
