@@ -100,7 +100,7 @@ $(document).ready(function () {
                     form_delete.appendTo(form_container_1);
                     let img = $('<img alt="' + course.Title + '">').appendTo(form_container_1);
                     // Load the image asynchronously
-                    $.get('../processes/image.php?id=' + course.CourseID, function (data) {
+                    $.get('../processes/image.php?table=Courses&id=' + course.CourseID, function (data) {
                         img.attr('src', data);
                     });
                     $('<h3></h3>').text(course.Title).appendTo(form_container_1);
@@ -147,5 +147,14 @@ $(document).ready(function () {
                 console.log(xhr.responseText);
             }
         });
+    }
+
+    function showAlert(message) {
+        var alertBox = $('<div></div>').addClass('alert-message').text(message);
+        $('body').append(alertBox);
+        alertBox.fadeIn();
+        setTimeout(function () {
+            alertBox.fadeOut();
+        }, 5000);
     }
 });

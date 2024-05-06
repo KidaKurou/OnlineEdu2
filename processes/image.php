@@ -1,7 +1,8 @@
 <?php
     include '../includes/db_connection.php';
+    $table = $_GET['table'];
     $id = $_GET['id'];  // Assuming the image ID is passed as a GET parameter.
-    $sql = "SELECT Picture FROM Courses WHERE CourseID = ?";
+    $sql = "SELECT Picture FROM $table WHERE CourseID = ?";
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
         die("Failed to prepare statement: " . $conn->error);

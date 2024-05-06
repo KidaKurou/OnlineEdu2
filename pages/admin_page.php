@@ -25,9 +25,9 @@ if (!isset($_SESSION['user_id'])) {
                 <h2>Admin Panel</h2>
             </div>
             <ul>
-                <li><a href="#add-course-link" id="add-course-link" class="actual">Add Courses</a></li>
-                <li><a href="#edit-course-link" id="edit-course-link">Edit Courses</a></li>
-                <li><a href="#" id="delete-course-link">Delete Courses</a></li>
+                <li><a href="#" id="add-course-link" class="actual">Add Courses</a></li>
+                <li><a href="#" id="edit-course-link">Edit Courses</a></li>
+                <li><a href="#" id="deleted-course-link">Delete Courses</a></li>
                 <li><a href="#" id="user-info-link">User Info</a></li>
             </ul>
         </div>
@@ -40,6 +40,7 @@ if (!isset($_SESSION['user_id'])) {
     <?php include 'footer.php'; ?>
     <script src="../js/admin_add_course.js"></script>
     <script src="../js/admin_edit_course.js"></script>
+    <script src="../js/admin_deleted_course.js"></script>
 </body>
 
 </html>

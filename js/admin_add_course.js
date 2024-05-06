@@ -66,7 +66,7 @@ $(document).ready(function () {
                     var courseBlock = $('<div class="course-block"></div>');
                     var img = $('<img alt="' + course.Title + '">').appendTo(courseBlock);
                     // Load the image asynchronously
-                    $.get('../processes/image.php?id=' + course.CourseID, function (data) {
+                    $.get('../processes/image.php?table=Courses&id=' + course.CourseID, function (data) {
                         img.attr('src', data);
                     });
                     // $('<img src="../processes/image.php?id=' + course.CourseID + '" alt="' + course.Title + '">').appendTo(courseBlock);
