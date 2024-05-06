@@ -33,12 +33,13 @@ if (!isset($_SESSION['user_id'])) {
         </div>
 
         <div class="admin-container">
-            <div class="admin-header"></div>
+            <div class="admin-header admin-header-panel"></div>
             <div class="courses-container"></div>
         </div>
     </div>
     <?php include 'footer.php'; ?>
-    <script src="../js/admin.js"></script>
+    <script src="../js/admin_add_course.js"></script>
+    <script src="../js/admin_edit_course.js"></script>
 </body>
 
 </html>

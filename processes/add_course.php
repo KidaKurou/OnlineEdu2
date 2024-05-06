@@ -19,8 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $level = $_POST['level'];
     $description = $_POST['description'];
     $duration = $_POST['duration'];
-    $visible = $_POST['visible'];
+    $visible = isset($_POST['visible']) ? 1 : 0;
     $image = $_FILES['course-img'];
+
+    // echo '<script>console.log(Visible: ' . $visible . ');</script>';
 
     // Validate the data
     if (empty($title) || empty($level) || empty($description) || empty($duration) || empty($image)) {

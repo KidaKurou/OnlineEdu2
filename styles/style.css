@@ -104,6 +104,7 @@
 
 /* ADD COURSES STYLES */
 #add-course-btn {
+    display: block;
     margin: 0;
     width: 100%;
     max-width: 400px;
@@ -124,17 +125,17 @@
     transition: background-color 0.3s ease;
 }
 
-#add-course-form {
+.course-form {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 20px;
-    background-color: #97222277;
+    background-color: #c2c2c277;
     align-items: flex-start;
 }
 
-#add-course-form input[type="text"] {
+.course-form input[type="text"] {
     width: 100%;
     max-width: 400px;
     height: 40px;
@@ -145,10 +146,10 @@
 }
 
 .cancel-btn {
-    display: block;
+    display: inline-block;
     position: relative;
     top: 10px;
-    left: 350px;
+    left: 10px;
     margin: 0;
     width: 40px;
     height: 40px;
@@ -198,4 +199,10 @@
     padding: 16px;
     border-radius: 4px;
     display: none;
+}
+
+.form-title {
+    display: inline-block;
+    width: 80%;
+    padding: 20px;
 }
