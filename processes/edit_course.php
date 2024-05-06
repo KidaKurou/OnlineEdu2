@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt === false) {
             die("Failed to prepare statement: " . $conn->error);
         }
-        $stmt->bind_param("sbssii", $title, $null, $level, $description, $duration, $visible, $course_id);
+        $stmt->bind_param("sbssiii", $title, $null, $level, $description, $duration, $visible, $course_id);
         $stmt->send_long_data(1, $imageData);
     }
     else {
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt === false) {
             die("Failed to prepare statement: " . $conn->error);
         }
-        $stmt->bind_param("sssii", $title, $level, $description, $duration, $visible, $course_id);
+        $stmt->bind_param("sssiii", $title, $level, $description, $duration, $visible, $course_id);
     }
     $stmt->execute();
 

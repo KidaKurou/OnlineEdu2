@@ -42,6 +42,7 @@ $(document).ready(function () {
             error: function (jqXHR, textStatus, errorThrown) {
                 // Handle AJAX errors
                 alert('AJAX error: ' + textStatus + ' : ' + errorThrown);
+                console.log('AJAX error: ' + textStatus + ' : ' + errorThrown + '\n' + jqXHR.responseText);
             }
         });
     });
