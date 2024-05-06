@@ -1,0 +1,167 @@
+/* ADMIN PANEL STYLES */
+.admin-panel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.admin-menu {
+    margin-right: 20px;
+    padding: 20px;
+    max-width: 250px;
+    flex: 1;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.admin-menu .admin-header {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    line-height: 1.2rem;
+}
+
+.admin-menu .admin-header::after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 1px;
+    background-color: #a7a7a7;
+    margin: 20px auto;
+}
+
+.admin-menu ul {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.admin-menu li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #f5f5f5;
+    line-height: 1.5rem;
+}
+
+.admin-menu li:hover {
+    background-color: #cee6ff;
+    transition: background-color 0.3s ease;
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: #252525;
+}
+
+
+
+
+
+/* ADMIN CONTAINER STYLES */
+.admin-container {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    /* max-width: 400px; */
+}
+
+.admin-container .admin-header {
+    display: block;
+    width: 100%;
+    line-height: 1.2rem;
+}
+
+.admin-container .admin-header::after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 1px;
+    background-color: #a7a7a7;
+    margin: 20px 0;
+}
+
+
+.wrap-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+/* ADD COURSES STYLES */
+#add-course-btn {
+    margin: 0;
+    width: 100%;
+    max-width: 400px;
+    min-height: 400px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    background-image: url("../images/add-circle-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 250px;
+}
+
+#add-course-btn:hover {
+    background-color: #d5cdf8;
+    transition: background-color 0.3s ease;
+}
+
+#add-course-form {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    align-items: flex-start;
+}
+
+#add-course-form input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+}
+
+.form-container {
+    display: none;
+    width: 100%;
+    max-width: 400px;
+    min-height: 400px;
+}
+
+.active {
+    display: block;
+}
+
+.alert-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    padding: 16px;
+    border-radius: 4px;
+    display: none;
+}
