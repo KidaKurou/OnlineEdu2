@@ -116,8 +116,6 @@ $(document).ready(function () {
     };
 
     function editCourse(e) {
-        $("#add-course-link").toggleClass('actual');
-        $("#edit-course-link").toggleClass('actual');
         e.preventDefault();
         $.ajax({
             url: "../processes/edit_course.php",
@@ -139,7 +137,8 @@ $(document).ready(function () {
                     $('<p></p>').text('Level: ' + course.Level).appendTo(form_container_1);
                     $('<p></p>').text('Duration: ' + course.Duration + ' hours').appendTo(form_container_1);
                     $('<p></p>').text('Visible: ' + Boolean(course.Hide)).appendTo(form_container_1);
-                    $('<a id="edit-course-btn" class="btn">Edit</a>').appendTo(form_container_1);
+                    // $('<a id="edit-course-btn" class="btn">Edit</a>').appendTo(form_container_1);
+                    $('<button id="edit-course-btn">Edit</button>').appendTo(form_container_1);
 
                     var form_container_2 = $('<div class="form-container"></div>').appendTo(courseBlock);
                     var form = $('<form id="add-course-form"></form>');

@@ -25,8 +25,8 @@ if (!isset($_SESSION['user_id'])) {
                 <h2>Admin Panel</h2>
             </div>
             <ul>
-                <li><a href="#" id="add-course-link" class="actual">Add Courses</a></li>
-                <li><a href="#" id="edit-course-link">Edit Courses</a></li>
+                <li><a href="#add-course-link" id="add-course-link" class="actual">Add Courses</a></li>
+                <li><a href="#edit-course-link" id="edit-course-link">Edit Courses</a></li>
                 <li><a href="#" id="delete-course-link">Delete Courses</a></li>
                 <li><a href="#" id="user-info-link">User Info</a></li>
             </ul>
