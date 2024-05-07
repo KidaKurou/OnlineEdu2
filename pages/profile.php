@@ -47,6 +47,8 @@ if ($maxLevel != $user['Level']) {
 
 <head>
     <title>Profile</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -63,7 +65,7 @@ if ($maxLevel != $user['Level']) {
                 <h4><?php echo $course['Title']; ?></h4>
                 <p>Status: <?php echo $course['Status']; ?></p>
                 <?php if ($course['Status'] == 'In Progress') : ?>
-                    <div class="btn-group">
+                    <!-- <div class="btn-group">
                         <form action="../processes/unsubscribe.php" method="post">
                             <input type="hidden" name="course_id" value="<?php echo $course['CourseID']; ?>">
                             <input class="btn" type="submit" value="Unsubscribe">
@@ -72,6 +74,10 @@ if ($maxLevel != $user['Level']) {
                             <input type="hidden" name="course_id" value="<?php echo $course['CourseID']; ?>">
                             <input class="btn" type="submit" value="Finish">
                         </form>
+                    </div> -->
+                    <div class="btn-group">
+                        <button class="btn unsubscribe-btn" data-course-id="<?php echo $course['CourseID']; ?>">Unsubscribe</button>
+                        <button class="btn finish-btn" data-course-id="<?php echo $course['CourseID']; ?>">Finish</button>
                     </div>
                 <?php endif; ?>
             </div>
@@ -81,6 +87,64 @@ if ($maxLevel != $user['Level']) {
         </form>
     </div>
     <?php include 'footer.php'; ?> <!-- Include your footer file -->
+    <script>
+        $(document).ready(function() {
+            // Handle the Unsubscribe button click
+            $('.unsubscribe-btn').click(function(e) {
+                e.preventDefault();
+                var courseId = $(this).data('course-id');
+                var courseBlock = $(this).closest('.course-profile');
+                $.ajax({
+                    url: '../processes/unsubscribe.php',
+                    type: 'post',
+                    data: {
+                        course_id: courseId
+                    },
+                    success: function(response) {
+                        // alert('Unsubscribed successfully!');
+                        showAlert('Unsubscribed successfully!');
+                        courseBlock.remove();
+                    },
+                    error: function() {
+                        alert('An error occurred.');
+                    }
+                });
+            });
+
+            // Handle the Finish button click
+            $('.finish-btn').click(function(e) {
+                e.preventDefault();
+                var courseId = $(this).data('course-id');
+                var courseBlock = $(this).closest('.course-profile');
+                $.ajax({
+                    url: '../processes/finish.php',
+                    type: 'post',
+                    data: {
+                        course_id: courseId
+                    },
+                    success: function(response) {
+                        // alert('Course finished successfully!');
+                        showAlert('Course finished successfully!');
+                        courseBlock.find('.btn-group').remove(); // Remove the buttons
+                        courseBlock.find('p:contains("Status:")').text('Status: Completed'); // Update the status
+                    },
+                    error: function() {
+                        alert('An error occurred.');
+                    }
+                });
+            });
+
+            function showAlert(message) {
+                var alertBox = $('<div></div>').addClass('alert-message').text(message);
+                $('body').append(alertBox);
+                alertBox.fadeIn();
+                setTimeout(function() {
+                    alertBox.fadeOut();
+                }, 5000);
+            }
+        });
+    </script>
+
 </body>
 
 </html>

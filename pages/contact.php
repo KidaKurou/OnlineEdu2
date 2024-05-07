@@ -21,6 +21,7 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <?php include 'header.php'; ?> <!-- Include your header file -->
     <div class="contact-page">
+        <div class="contact-block">
         <div class="contact-header">
             <h2>Contact Us</h2>
         </div>
@@ -43,6 +44,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <input type="submit" id="submit-btn" value="Send">
             </form>
+        </div>
         </div>
     </div>
     <?php include 'footer.php'; ?> <!-- Include your footer file -->
