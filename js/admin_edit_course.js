@@ -131,8 +131,9 @@ $(document).ready(function () {
                     $('<textarea id="description" name="description" required>' + course.Description + '</textarea>').appendTo(form);
                     $('<label for="duration">Duration:</label>').appendTo(form);
                     $('<input type="number" id="duration" name="duration" value="' + course.Duration + '" required>').appendTo(form);
-                    $('<label for="course-img">Choose an image:</label>').appendTo(form);
-                    $('<input type="file" id="course-img" name="course-img" accept="image/*">').appendTo(form);
+                    var div_upload = $('<div class="file-upload"></div>').appendTo(form);
+                    $('<label for="file-upload-input" id="file-upload-label">Choose an image:</label>').appendTo(div_upload);
+                    $('<input type="file" class="file-upload-input" id="file-upload-input" name="course-img" accept="image/*">').appendTo(div_upload);
                     $('<label for="visible">Visible:</label>').appendTo(form);
                     $('<input type="checkbox" id="visible" name="visible" value="1" ' + (course.Hide ? 'checked' : '') + '>').appendTo(form);
                     $('<input type="submit" value="Edit Course">').appendTo(form);

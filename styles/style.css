@@ -125,6 +125,10 @@
     transition: background-color 0.3s ease;
 }
 
+
+
+
+/* COURSE FORM STYLES */
 .course-form {
     box-sizing: border-box;
     display: flex;
@@ -144,6 +148,101 @@
     border: 1px solid #a7a7a7;
     border-radius: 5px;
 }
+
+.course-form input[type="number"] {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+}
+
+.course-form select {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+}
+
+.course-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.course-form textarea {
+    resize: vertical;
+    width: 100%;
+    max-width: 400px;
+    min-height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+}
+
+.course-form input[type="file"] {
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+}
+
+.course-form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.course-form input[type="submit"]:hover {
+    background-color: #0069d9;
+    transition: background-color 0.3s ease;
+}
+
+.course-form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+.file-upload {
+    position: relative;
+    display: inline-block;
+}
+
+#file-upload-input {
+    display: none;
+}
+
+#file-upload-label {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+#file-upload-label:hover {
+    background-color: #45a049;
+}
+
+#file-upload-input:active+.file-upload-label {
+    transform: scale(0.99);
+}
+
 
 .cancel-btn {
     display: inline-block;
