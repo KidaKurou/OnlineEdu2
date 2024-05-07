@@ -51,7 +51,7 @@ $stmt->close();
 <body>
     <?php include 'header.php'; ?> <!-- Include your header file -->
     <div class="course">
-        <img src="../processes/image.php?id=<?php echo $course['CourseID']; ?>" alt="<?php echo $course['Title']; ?>">
+        <img src="../processes/image2.php?table=Courses&id=<?php echo $course['CourseID']; ?>" alt="<?php echo $course['Title']; ?>">
         <div class="course-details">
             <h2><?php echo $course['Title']; ?></h2>
             <p>Level: <?php echo $course['Level']; ?></p>

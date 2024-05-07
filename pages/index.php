@@ -1,53 +1,42 @@
-<?php
-include 'header.php';
-include '../includes/db_connection.php';
+<html>
+<head>
+    <title>Course Website</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <?php include 'header.php'; ?>
 
+    <div class="container">
+        <h2>Welcome to Our Course Website</h2>
+        <p>Here you can find a variety of courses to suit your learning needs.</p>
+    </div>
 
-$order = $_GET['order'] ?? 'level';  // Get the order from the GET parameters, default to 'level'
-
-// Determine the SQL order clause based on the selected order
-if ($order === 'level') {
-    $sqlOrder = "Level ASC, Title ASC";
-} elseif ($order === 'alphabetical') {
-    $sqlOrder = "Title ASC";
-} else {
-    die("Invalid order: " . htmlspecialchars($order));
-}
-
-$sql = "SELECT * FROM Courses ORDER BY $sqlOrder";
-
-// $sql = "SELECT * FROM Courses";
-$stmt = $conn->prepare($sql);
-if ($stmt === false) {
-    die("Failed to prepare statement: " . $conn->error);
-}
-
-echo '<div class="container"><h2>Welcome to Our Course Website</h2>
-        <p>Here you can find a variety of courses to suit your learning needs.</p></div>';
-
-// Add the sorting dropdown
-echo '<div class="sort"><form action="index.php" method="get">
+    <div class="sort">
         <label for="order">Sort by:</label>
-        <select id="order" name="order" onchange="this.form.submit()">
-            <option value="level"' . ($order === 'level' ? ' selected' : '') . '>Level</option>
-            <option value="alphabetical"' . ($order === 'alphabetical' ? ' selected' : '') . '>Alphabetical</option>
+        <select id="order" name="order">
+            <option value="level">Level</option>
+            <option value="alphabetical">Alphabetical</option>
         </select>
-      </form></div>';
+    </div>
 
-$stmt->execute();
-$result = $stmt->get_result();
+    <div class="courses-container"></div>
 
-if ($result->num_rows > 0) {
-    echo '<div class="courses-container">';
-    while ($row = $result->fetch_assoc()) {
-        if ($row['Hide'] != 0) {
-            include 'course_block.php';
-        }
-    }
-    echo '</div>';
-} else {
-    echo "<p>No courses available.</p>";
-}
+    <?php include 'footer.php'; ?>
 
-include 'footer.php';
-?>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch and display the courses
+            function fetchCourses() {
+                var order = $('#order').val();
+                $('.courses-container').load('../processes/fetch_courses.php?order=' + order);
+            }
+
+            // Fetch and display the courses when the page loads
+            fetchCourses();
+
+            // Fetch and display the courses when the sorting order is changed
+            $('#order').change(fetchCourses);
+        });
+    </script>
+</body>
+</html>

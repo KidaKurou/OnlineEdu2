@@ -1,12 +1,15 @@
 $(document).ready(function () {
     $(window).on("load", function () {
-        var actualLink = $('.actual')[0].id;
-        console.log(actualLink);
-        if (actualLink === 'add-course-link') {
-            addCourse({ preventDefault: function () { } });
-        } else if (actualLink === 'edit-course-link') {
-            editCourse({ preventDefault: function () { } });
+        var selectedSection = localStorage.getItem('selectedSection');
+        if (selectedSection) {
+            $("#" + selectedSection).trigger('click');
         }
+
+        $(".admin-menu a").click(function(e) {
+            e.preventDefault();
+            // Store the id of the clicked link in localStorage
+            localStorage.setItem('selectedSection', this.id);
+        });
     });
 
     // Add Course
