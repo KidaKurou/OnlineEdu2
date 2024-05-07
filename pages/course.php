@@ -46,6 +46,8 @@ $stmt->close();
 
 <head>
     <title><?php echo $course['Title']; ?></title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -57,10 +59,10 @@ $stmt->close();
             <p>Level: <?php echo $course['Level']; ?></p>
             <p>Description: <?php echo $course['Description']; ?></p>
             <p>Duration: <?php echo $course['Duration']; ?></p>
-            <form action="../processes/subscribe.php" method="post">
+            <form id="subscribe-form" method="post">
                 <input type="hidden" name="course_id" value="<?php echo $course['CourseID']; ?>">
                 <?php if ($loggedIn && !$userCourse) : ?>
-                    <input type="submit" value="Subscribe" class="btn">
+                    <input type="submit" value="Subscribe" class="btn" id="subscribe-button">
                 <?php else : ?>
                     <input type="submit" value="Subscribe" class="btn disabled" disabled>
                 <?php endif; ?>
@@ -69,6 +71,37 @@ $stmt->close();
         </div>
     </div>
     <?php include 'footer.php'; ?> <!-- Include your footer file -->
+    <script>
+        $(document).ready(function() {
+            $('#subscribe-form').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '../processes/subscribe.php',
+                    type: 'post',
+                    data: $(this).serialize(),
+                    success: function() {
+                        $('#subscribe-button').prop('disabled', true);
+                        // alert('Subscription successful!');
+                        showAlert('Subscription successfully!');
+                        $('#subscribe-button').attr('disabled');
+                    },
+                    error: function() {
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            });
+            function showAlert(message) {
+                var alertBox = $('<div></div>').addClass('alert-message').text(message);
+                $('body').append(alertBox);
+                alertBox.fadeIn();
+                setTimeout(function() {
+                    alertBox.fadeOut();
+                }, 5000);
+            }
+        });
+    </script>
+
 </body>
 
 </html>
