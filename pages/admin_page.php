@@ -28,7 +28,8 @@ if (!isset($_SESSION['user_id'])) {
                 <li><a href="#" id="add-course-link" class="actual">Add Courses</a></li>
                 <li><a href="#" id="edit-course-link">Edit Courses</a></li>
                 <li><a href="#" id="deleted-course-link">Delete Courses</a></li>
-                <li><a href="#" id="user-info-link">User Info</a></li>
+                <li><a href="#" id="users-feedback-link">Users Feedback</a></li>
+                <!-- <li><a href="#" id="users-info-link">Users Info</a></li> -->
             </ul>
         </div>
 
@@ -41,6 +42,7 @@ if (!isset($_SESSION['user_id'])) {
     <script src="../js/admin_add_course.js"></script>
     <script src="../js/admin_edit_course.js"></script>
     <script src="../js/admin_deleted_course.js"></script>
+    <script src="../js/admin_user_feedback.js"></script>
 </body>
 
 </html>

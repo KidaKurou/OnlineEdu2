@@ -272,3 +272,34 @@ form#restore-course-form {
     width: 80%;
     padding: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+/* USER FEEDBACK STYLES */
+.feedback-list,
+.feedback-details {
+    grid-column: span 1;
+    width: 100%;
+}
+
+.feedback-block {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.feedback-block:hover {
+    background-color: #f0f0f0;
+}
+
+.feedback-block:hover {
+    background-color: #f0f0f0;
+}
