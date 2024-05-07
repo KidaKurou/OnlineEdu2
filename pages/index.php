@@ -43,7 +43,6 @@ if ($result->num_rows > 0) {
         if ($row['Hide'] != 0) {
             include 'course_block.php';
         }
-        // include 'course_block.php';
     }
     echo '</div>';
 } else {

@@ -24,6 +24,7 @@ session_start();
             <input type="password" id="password" name="password" required><br>
             <input type="submit" value="Register">
         </form>
+        <p>Already have an account? <a href="login.php">Login</a></p>
         <?php
         // Display error message if set
         if (isset($_SESSION['error'])) {
