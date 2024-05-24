@@ -18,6 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("i", $course_id);
     $stmt->execute();
 
+    // Delete the course from the UserCourses table
+    $sql = "DELETE FROM UserCourses WHERE CourseID = ?";
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        die("Failed to prepare statement: " . $conn->error);
+    }
+    $stmt->bind_param("i", $course_id);
+    $stmt->execute();
+
     // Delete the course from the Courses table
     $sql = "DELETE FROM Courses WHERE CourseID = ?";
     $stmt = $conn->prepare($sql);
