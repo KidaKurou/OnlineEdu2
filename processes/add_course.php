@@ -22,13 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $visible = isset($_POST['visible']) ? 1 : 0;
     $image = $_FILES['course-img'];
 
-    // echo '<script>console.log(Visible: ' . $visible . ');</script>';
+    // echo json_encode(['status' => 'success', 'message' => `{$title}, {$level}, {$description}, {$duration}, {$visible}, {$image}`]);
 
     // Validate the data
     if (empty($title) || empty($level) || empty($description) || empty($duration) || empty($image)) {
-        echo $title . $level . $description . $duration . $visible . $image;
         header('Content-Type: application/json');
-        echo json_encode(['status' => 'error', 'message' => 'All fields are required']);
+        echo json_encode(['status' => 'error', 'message' => 'Please fill in all required fields']);
         exit();
     }
 
@@ -39,10 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
     $imageData = file_get_contents($image['tmp_name']);
-
-    // Add the new course to the database
-    // $sql = "INSERT INTO Courses (Title, Picture, Level, Description, Duration, Hide) VALUES ('{$title}', '{$imageData}', '{$level}', '{$description}', '{$duration}', '{$visible}')";
-    // $result = mysqli_query($conn, $sql);
     
     // Add the new course to the database
     $sql = "INSERT INTO Courses (Title, Picture, Level, Description, Duration, Hide) VALUES (?, ?, ?, ?, ?, ?)";

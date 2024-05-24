@@ -26,6 +26,7 @@ $(document).ready(function () {
     $(document).on('submit', '#add-course-form', function (e) {
         e.preventDefault();
         var formData = new FormData(this);
+        console.log(this);
         $.ajax({
             url: "../processes/add_course.php",
             type: "post",
@@ -40,14 +41,16 @@ $(document).ready(function () {
 
                     // Reload the courses
                     addCourse(e);
+
+                    console.log(response.message);
                 } else {
                     // Show an error message
                     alert('An error occurred: ' + response.message);
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
+            error: function (textStatus) {
                 // Handle AJAX errors
-                alert('AJAX error: ' + textStatus + ' : ' + errorThrown);
+                console.log('AJAX error: ' + textStatus.status + ' : ' + textStatus.responseText);
             }
         });
     });
