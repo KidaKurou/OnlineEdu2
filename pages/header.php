@@ -18,7 +18,7 @@ session_start();
             </div>
             <nav>
                 <ul>
-                    <?php if (isset($_SESSION['user_id']) && $_SESSION['admin']) : ?>
+                    <?php if (isset($_SESSION['user_id']) && isset($_SESSION['admin']) && $_SESSION['admin'] === true) : ?>
                         <li>
                             <a href="admin_page.php">Admin Panel</a>
                         </li>

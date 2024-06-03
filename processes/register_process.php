@@ -10,7 +10,7 @@ $email = $_POST['email'];
 $login = $_POST['username'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
 // Insert into database
-$sql = "INSERT INTO Users (FirstName, LastName, Email, Login, Password) VALUES (?, ?, ?, ?, ?)";
+$sql = "INSERT INTO Users (FirstName, LastName, Email, Login, Password, job_title) VALUES (?, ?, ?, ?, ?, 'user')";
 $stmt = $conn->prepare($sql);
 if ($stmt === false) {
     die("Failed to prepare statement: " . $conn->error);
