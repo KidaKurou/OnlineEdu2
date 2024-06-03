@@ -30,11 +30,7 @@
                 var order = $('#order').val();
                 $('.courses-container').load('../processes/fetch_courses.php?order=' + order);
             }
-
-            // Fetch and display the courses when the page loads
             fetchCourses();
-
-            // Fetch and display the courses when the sorting order is changed
             $('#order').change(fetchCourses);
         });
     </script>

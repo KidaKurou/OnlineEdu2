@@ -36,6 +36,10 @@ if (!isset($_SESSION['user_id'])) {
         <div class="admin-container">
             <div class="admin-header admin-header-panel"></div>
             <div class="courses-container"></div>
+            <div class="previous-courses-info">
+                <div class="new-data"></div>
+                <div class="previous-data"></div>
+            </div>
         </div>
     </div>
     <?php include 'footer.php'; ?>
