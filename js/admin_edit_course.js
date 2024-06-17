@@ -1,9 +1,6 @@
 $(document).ready(function () {
-    // Previouse Courses Info array
-    var previouse_courses_info = [];
-
     // Edit Course
-    $("#edit-course-link").click(editCourse);
+    $("#edit-course-link").click(updateCourse);
 
     $(document).on('click', '#edit-course-btn', function () {
         let form_container_1 = $(this).parent();
@@ -11,28 +8,15 @@ $(document).ready(function () {
         form_container_2.toggleClass('active');
         form_container_1.toggleClass('active');
 
-        // Get previouse course's data from course card (form)
-        let courseID = form_container_1.find('input[name="CourseID"]').val();
-        let course_title = form_container_1.find('h3').text();
-        let course_description = form_container_1.find('p').text();
-        let course_level = form_container_1.find('p').eq(1).text();
-        let course_duration = form_container_1.find('p').eq(2).text();
-        let course_visible = form_container_1.find('p').eq(3).text();
-
-        // Clear array
-        previouse_courses_info = [];
-        // Put previouse data into array
-        previouse_courses_info.push({
-            CourseID: courseID,
-            Title: course_title,
-            Description: course_description,
-            Level: course_level,
-            Duration: course_duration,
-            Hide: course_visible
-        });
-
-        // Show previous-courses-info
-        $('.previous-courses-info').html('');
+        // Insert and show previouse data from form_container_2 (FormData)
+        $('.previous-data').html('<h3>Previouse Data</h3>');
+        $('.previous-data').hide();
+        let previouse_data = new FormData(form_container_2[0].children[1]);
+        // console.log(previouse_data.entries().next().value);
+        for (let [key, value] of previouse_data.entries()) {
+            if (key === 'course-id') continue;
+            $('.previous-data').append('<p>' + key + ': ' + value + '</p>');
+        }
     });
 
     $(document).on('click', '#cancel-btn-edit', function () {
@@ -40,15 +24,18 @@ $(document).ready(function () {
         let form_container_2 = form_container_1.prev();
         form_container_2.toggleClass('active');
         form_container_1.toggleClass('active');
-
-        // Hide previous-courses-info
-        // $('.previous-courses-info').html('');
-        // $('.previous-courses-info').style.display = 'none';
     });
 
     $(document).on('submit', '#edit-course-form', function (e) {
         e.preventDefault();
         var formData = new FormData(this);
+
+        $('.new-data').html('<h3>New Data</h3>');
+        for (let [key, value] of formData.entries()) {
+            if (key === 'course-id') continue;
+            $('.new-data').append('<p>' + key + ': ' + value + '</p>');
+        }
+
         $.ajax({
             url: "../processes/edit_course.php",
             type: "post",
@@ -60,9 +47,7 @@ $(document).ready(function () {
                 if (response.status === 'success') {
                     // Show a success message
                     showAlert('Course modified successfully!');
-
-                    // Reload the courses
-                    editCourse(e);
+                    updateCourse(e); // Reload the courses
                 } else {
                     // Show an error message
                     alert('An error occurred: ' + response.message);
@@ -70,14 +55,13 @@ $(document).ready(function () {
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // Handle AJAX errors
-                alert('AJAX error: ' + textStatus + ' : ' + errorThrown);
                 console.log('AJAX error: ' + textStatus + ' : ' + errorThrown + '\n' + jqXHR.responseText);
             }
         });
     });
 
     $(document).on('submit', '#delete-course-form', function (e) {
-        e.preventDefault();
+        e.preventDefault(); // Prevent form submission
         var formData = new FormData(this);
         $.ajax({
             url: "../processes/delete_course.php",
@@ -89,26 +73,21 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.status === 'success') {
                     // Show a success message
-                    // alert('Course modified successfully!');
                     showAlert('Course deleted successfully!');
-
-                    // Reload the courses
-                    editCourse(e);
+                    updateCourse(e); // Reload the courses
                 } else {
                     // Show an error message
-                    alert('An error occurred: ' + response.message);
                     console.log(response.message);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 // Handle AJAX errors
-                alert('AJAX error: ' + textStatus + ' : ' + errorThrown);
                 console.log('AJAX error: ' + textStatus + ' : ' + errorThrown + '\n' + jqXHR.responseText);
             }
         });
     });
 
-    function editCourse(e) {
+    function updateCourse(e) {
         e.preventDefault();
         $.ajax({
             url: "../processes/edit_course.php",
@@ -172,16 +151,7 @@ $(document).ready(function () {
                     courseBlock.appendTo('.courses-container');
                 });
                 // Show previous-courses-info
-                $('.previous-courses-info').html('<h2>Previouse Courses</h2>');
-                $.each(previouse_courses_info, function (i, course) {
-                    $('.previous-courses-info').append('<p>' + course.Title + '</p>');
-                    $('.previous-courses-info').append('<p>Level: ' + course.Level + '</p>');
-                    $('.previous-courses-info').append('<p>Description: ' + course.Description + '</p>');
-                    $('.previous-courses-info').append('<p>Duration: ' + course.Duration + ' hours</p>');
-                    $('.previous-courses-info').append('<p>Visible: ' + Boolean(course.Hide) + '</p>');
-                });
-                $('.previous-courses-info').show();
-
+                $('.previous-data').show();
             },
             error: function (xhr, status, error) {
                 alert("ERROR");

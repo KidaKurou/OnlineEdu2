@@ -36,9 +36,14 @@ if (!isset($_SESSION['user_id'])) {
         <div class="admin-container">
             <div class="admin-header admin-header-panel"></div>
             <div class="courses-container"></div>
-            <div class="previous-courses-info">
-                <div class="new-data"></div>
-                <div class="previous-data"></div>
+            <h2>Previouse Course Info</h2>
+            <div class="previous-courses-info" style="width: 80%; display: flex; justify-content: space-between;">
+                <div class="previous-data">
+                    <h3>Previous Data</h3>
+                </div>
+                <div class="new-data">
+                    <h3>New Data</h3>
+                </div>
             </div>
         </div>
     </div>
